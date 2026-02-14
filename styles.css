@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 * {
     margin: 0;
@@ -128,13 +129,14 @@ body {
 }
 
 .logo-text {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     background: var(--accent-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    letter-spacing: 0.5px;
-    font-weight: 900;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 32px;
 }
 
 .nav-menu {
@@ -147,9 +149,10 @@ body {
 .nav-link {
     color: var(--text-secondary);
     text-decoration: none;
-    font-weight: 700;
-    font-size: var(--fs-xs);
-    letter-spacing: 0.5px;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
     transition: color 0.3s ease;
     position: relative;
     padding: 5px 0;
@@ -175,21 +178,23 @@ body {
 }
 
 .cta-nav {
-    background: var(--accent-gradient) !important;
-    border: none !important;
-    color: var(--bg-primary) !important;
-    padding: 12px 28px !important;
+    background: transparent !important;
+    border: 1px solid var(--accent-gold) !important;
+    color: var(--accent-gold) !important;
+    padding: 12px 32px !important;
     border-radius: 0 !important;
-    letter-spacing: 0.5px !important;
+    letter-spacing: 2.5px !important;
     font-size: 11px !important;
     transition: all 0.4s ease !important;
-    font-weight: 800 !important;
-    box-shadow: var(--shadow-glow) !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
 }
 
 .cta-nav:hover {
+    background: var(--accent-gold) !important;
+    color: var(--bg-primary) !important;
     transform: translateY(-2px) !important;
-    box-shadow: var(--shadow-glow-strong) !important;
+    box-shadow: var(--shadow-glow) !important;
 }
 
 .hamburger {
@@ -210,14 +215,17 @@ body {
 .hero {
     background: var(--bg-primary);
     color: var(--text-heading);
-    padding: 100px 80px;
+    padding: 0 40px;
     position: relative;
     overflow: hidden;
     margin-top: 80px;
     min-height: calc(100vh - 80px);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    justify-content: center;
+    text-align: center;
 }
 
 .hero::before {
@@ -395,40 +403,87 @@ body {
     letter-spacing: 0.5px;
 }
 
-.skill-1 {
-    top: -10%;
-    left: -15%;
-    animation: float 4s ease-in-out infinite;
+.hero-blend-left {
+    left: -2%;
+    -webkit-mask-image: 
+        linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 15%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%),
+        linear-gradient(to right, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    -webkit-mask-composite: destination-in;
+    mask-image: 
+        linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 15%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%),
+        linear-gradient(to right, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    mask-composite: intersect;
+    animation: fadeInBlendLeft 1.5s ease-out 0.3s backwards;
 }
 
-.skill-2 {
-    top: 10%;
-    right: -20%;
-    animation: float 5s ease-in-out infinite 0.5s;
+.hero-blend-right {
+    right: -2%;
+    -webkit-mask-image: 
+        linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 15%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%),
+        linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    -webkit-mask-composite: destination-in;
+    mask-image: 
+        linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 15%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%),
+        linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    mask-composite: intersect;
+    animation: fadeInBlendRight 1.5s ease-out 0.5s backwards;
 }
 
-.skill-3 {
-    top: 40%;
-    left: -20%;
-    animation: float 4.5s ease-in-out infinite 1s;
+@keyframes fadeInBlendLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 0.6;
+        transform: translateX(0);
+    }
 }
 
-.skill-4 {
-    top: 50%;
-    right: -18%;
-    animation: float 3.5s ease-in-out infinite 1.5s;
+@keyframes fadeInBlendRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 0.6;
+        transform: translateX(0);
+    }
 }
 
-.skill-5 {
-    bottom: 15%;
-    left: -12%;
-    animation: float 4s ease-in-out infinite 2s;
+.hero-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-bottom: 40px;
+    animation: fadeInUp 1s ease-out 0.2s backwards;
 }
 
-.skill-6 {
-    bottom: -8%;
-    right: -15%;
-    animation: float 5s ease-in-out infinite 0.8s;
+.hero-buttons {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease-out 1s backwards;
+}
+
+.hero-scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--accent-gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -496,16 +551,13 @@ body {
 }
 
 .hero-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 800;
-    background: var(--accent-gradient);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 45px;
-    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 400;
+    color: var(--text-heading);
+    -webkit-text-fill-color: var(--text-heading);
+    margin-bottom: 40px;
+    display: block;
     letter-spacing: -0.5px;
     line-height: 1.15;
     animation:
@@ -514,49 +566,38 @@ body {
 }
 
 .hero-description {
-    font-size: var(--fs-body-lg);
-    font-weight: 600;
-    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin-bottom: 50px;
     color: var(--text-secondary);
-    letter-spacing: 0.5px;
-    line-height: 1.6;
-    max-width: 100%;
-    animation: fadeInUp 1s ease-out 0.6s backwards;
-}
-
-.hero-subtext {
-    font-size: var(--fs-small);
-    color: var(--text-muted);
-    margin-bottom: 60px;
-    font-weight: 600;
-    line-height: 1.6;
-    animation: fadeInUp 1s ease-out 0.8s backwards;
+    letter-spacing: 0.3px;
+    line-height: 1.8;
+    max-width: 600px;
+    animation: fadeInUp 1s ease-out 0.7s backwards;
 }
 
 /* ===== BUTTONS ===== */
 .btn {
     display: inline-block;
-    padding: 14px 36px;
+    padding: 16px 44px;
     border: none;
     font-family: 'Inter', sans-serif;
-    font-size: var(--fs-small);
-    font-weight: 800;
+    font-size: 12px;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.4s ease;
     text-decoration: none;
-    letter-spacing: 0.5px;
-    animation: fadeInUp 1s ease-out 1s backwards;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
     position: relative;
     z-index: 1;
 }
 
 .btn-primary {
-    background: var(--accent-gradient);
-    background-size: 200% auto;
+    background: var(--accent-gold);
     color: var(--bg-primary);
-    border: 1px solid transparent;
-    box-shadow: var(--shadow-glow);
-    animation: buttonPulse 3s ease-in-out infinite;
+    border: 1px solid var(--accent-gold);
     position: relative;
     overflow: hidden;
 }
@@ -569,7 +610,7 @@ body {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
     z-index: -1;
@@ -581,29 +622,28 @@ body {
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: var(--shadow-glow-strong);
-    animation: none;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow);
 }
 
 .btn-secondary {
     background: transparent;
     color: var(--text-heading);
-    border: 2px solid var(--accent-gold);
+    border: 1px solid var(--accent-gold);
     position: relative;
 }
 
 .btn-secondary:hover {
-    background: var(--accent-gradient);
+    background: var(--accent-gold);
     color: var(--bg-primary);
     transform: translateY(-3px);
     box-shadow: var(--shadow-glow);
 }
 
 .btn-large {
-    padding: 18px 48px;
-    font-size: var(--fs-small);
-    letter-spacing: 0.5px;
+    padding: 18px 52px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
 }
 
 /* ===== SECTION HEADER ===== */
@@ -1646,7 +1686,6 @@ body {
     }
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -1679,39 +1718,17 @@ body {
         -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
     }
 
-    .floating-skill {
-        font-size: 0.7rem;
-        padding: 6px 14px;
-    }
-
-    .skill-1 {
-        top: -8%;
-        left: -10%;
-    }
-
-    .skill-2 {
-        top: 8%;
-        right: -12%;
-    }
-
-    .skill-3 {
-        top: 35%;
+    .hero-blend-left {
         left: -15%;
     }
 
-    .skill-4 {
-        top: 45%;
-        right: -12%;
+    .hero-blend-right {
+        right: -15%;
+        opacity: 0;
     }
 
-    .skill-5 {
-        bottom: 12%;
-        left: -8%;
-    }
-
-    .skill-6 {
-        bottom: -6%;
-        right: -10%;
+    .hero-content {
+        text-align: center;
     }
 
     .hero-title {
@@ -1724,6 +1741,18 @@ body {
 
     .hero-description {
         font-size: var(--fs-body);
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
     }
 
     .section-header h2 {
