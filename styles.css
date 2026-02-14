@@ -1587,7 +1587,7 @@ body {
     }
 
     .hero {
-        padding: 140px 24px 80px;
+        padding: 40px 24px 80px;
     }
 
     .hero-blend-image {
@@ -1597,11 +1597,15 @@ body {
 
     .hero-blend-left {
         left: -15%;
+        opacity: 0.3;
+        display: block;
     }
 
     .hero-blend-right {
         right: -15%;
-        opacity: 0;
+        
+
+        display: none;
     }
 
     .hero-content {
@@ -1609,7 +1613,7 @@ body {
     }
 
     .hero-title {
-        font-size: clamp(2rem, 8vw, 2.75rem);
+        font-size: clamp(2.5rem, 10vw, 3.5rem);
     }
 
     .hero-subtitle {
