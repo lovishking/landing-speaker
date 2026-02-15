@@ -330,7 +330,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    width: 50%;
+    width: 70%;
     height: 100%;
     z-index: 1;
     display: flex;
@@ -649,6 +649,7 @@ body {
     padding: 120px 24px;
     background: var(--bg-secondary);
     position: relative;
+    overflow: hidden;
 }
 
 .who-section::before {
@@ -659,6 +660,23 @@ body {
     right: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
+}
+
+.who-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(31, 26, 26, 0.4) 50%, rgba(70, 40, 30, 0.5) 100%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.who-section .container {
+    position: relative;
+    z-index: 2;
 }
 
 .who-description {
@@ -735,11 +753,47 @@ body {
     letter-spacing: 0.3px;
 }
 
+.who-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    pointer-events: none;
+}
+
+.who-image-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+.who-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    opacity: 1;
+    mix-blend-mode: luminosity;
+    transition: all 0.8s ease;
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+}
+
 /* ===== SERVICES ===== */
 .services {
     padding: 120px 24px;
     background: var(--bg-tertiary);
     position: relative;
+    overflow: hidden;
 }
 
 .services::before {
@@ -750,6 +804,11 @@ body {
     right: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
+}
+
+.services .container {
+    position: relative;
+    z-index: 2;
 }
 
 .services-grid {
@@ -822,11 +881,47 @@ body {
     font-weight: 500;
 }
 
+.services-image-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    pointer-events: none;
+}
+
+.services-image-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+.services-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    opacity: 0.6;
+    mix-blend-mode: luminosity;
+    transition: all 0.8s ease;
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+}
+
 /* ===== OUTCOMES ===== */
 .outcomes {
     padding: 120px 24px;
     background: var(--bg-secondary);
     position: relative;
+    overflow: hidden;
 }
 
 .outcomes::before {
@@ -837,6 +932,11 @@ body {
     right: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
+}
+
+.outcomes .container {
+    position: relative;
+    z-index: 2;
 }
 
 .outcomes-grid {
@@ -894,6 +994,41 @@ body {
     line-height: 1.7;
     font-size: var(--fs-body);
     font-weight: 500;
+}
+
+.outcomes-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    pointer-events: none;
+}
+
+.outcomes-image-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+.outcomes-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    opacity: 0.6;
+    mix-blend-mode: luminosity;
+    transition: all 0.8s ease;
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
 }
 
 /* ===== FLAGSHIP ===== */
@@ -1679,6 +1814,39 @@ body {
         -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
     }
 
+    .who-image-container {
+        width: 60%;
+        opacity: 0.8;
+    }
+
+    .who-image {
+        opacity: 0.4;
+        mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+    }
+
+    .services-image-container {
+        width: 60%;
+        opacity: 0.8;
+    }
+
+    .services-image {
+        opacity: 0.4;
+        mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+    }
+
+    .outcomes-image-container {
+        width: 60%;
+        opacity: 0.8;
+    }
+
+    .outcomes-image {
+        opacity: 0.4;
+        mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+    }
+
     .floating-skill {
         font-size: 0.7rem;
         padding: 6px 14px;
@@ -1801,6 +1969,18 @@ body {
 
     .audience-grid {
         grid-template-columns: 1fr;
+    }
+
+    .who-image-container {
+        display: none;
+    }
+
+    .services-image-container {
+        display: none;
+    }
+
+    .outcomes-image-container {
+        display: none;
     }
 
     .gallery-grid {
