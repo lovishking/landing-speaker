@@ -316,63 +316,12 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to right, #171f16b3 0%, rgba(10, 10, 15, 0.4) 50%, transparent 100%);
+    background: linear-gradient(to right, #171f16b3 0%, rgba(5, 5, 18, 0.4) 50%, transparent 100%);
     z-index: 1;
     pointer-events: none;
 }
 
-/* Floating Skills */
-.floating-skill {
-    position: absolute;
-    background: rgba(212, 175, 55, 0.15);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--accent-gold);
-    white-space: nowrap;
-    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.08);
-    z-index: 10;
-    letter-spacing: 0.5px;
-    will-change: transform;
-}
 
-.skill-1 {
-    top: -10%;
-    left: -15%;
-    animation: slideInSkill 0.8s ease-out;
-}
-
-.skill-2 {
-    top: 10%;
-    right: -20%;
-    animation: slideInSkill 0.8s ease-out 0.1s backwards;
-}
-
-.skill-3 {
-    top: 40%;
-    left: -20%;
-    animation: slideInSkill 0.8s ease-out 0.2s backwards;
-}
-
-.skill-4 {
-    top: 50%;
-    right: -18%;
-    animation: slideInSkill 0.8s ease-out 0.3s backwards;
-}
-
-.skill-5 {
-    bottom: 15%;
-    left: -12%;
-    animation: slideInSkill 0.8s ease-out 0.4s backwards;
-}
-
-.skill-6 {
-    bottom: -8%;
-    right: -15%;
-    animation: slideInSkill 0.8s ease-out 0.5s backwards;
-}
 
 @keyframes slideInSkill {
     from {
