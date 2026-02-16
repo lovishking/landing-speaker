@@ -552,7 +552,7 @@ body {
     text-align: center;
     font-size: var(--fs-body);
     line-height: 1.85;
-    color: var(--text-secondary);
+    color: #fffdfa;
     font-weight: 500;
 }
 
