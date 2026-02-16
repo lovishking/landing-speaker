@@ -39,8 +39,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Active Navigation Link
+// Active Navigation Link - with throttling
+let lastUpdateTime = 0;
 const updateActiveLink = () => {
+    const now = Date.now();
+    if (now - lastUpdateTime < 200) return; // Throttle to every 200ms
+    lastUpdateTime = now;
+
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-link');
 
@@ -60,7 +65,7 @@ const updateActiveLink = () => {
     });
 };
 
-window.addEventListener('scroll', updateActiveLink);
+window.addEventListener('scroll', updateActiveLink, { passive: true });
 
 // ========================================
 // EmailJS Configuration
@@ -167,10 +172,10 @@ ctaButtons.forEach(button => {
     }
 });
 
-// Scroll Animation - Fade In Elements
+// Scroll Animation - Fade In Elements (optimized with performance settings)
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    threshold: 0.05,
+    rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -191,7 +196,8 @@ const animateElements = document.querySelectorAll(
 animateElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
-    el.style.transition = 'all 0.6s ease-out';
+    el.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+    el.style.willChange = 'opacity, transform';
     observer.observe(el);
 });
 
@@ -218,99 +224,13 @@ function createModal(index) {
         </div>
     `;
 
-    // Add modal styles
-    const style = document.createElement('style');
-    style.textContent = `
-        .gallery-modal {
-            display: flex;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90vh;
-        }
-
-        .modal-image {
-            width: 100%;
-            height: 60vh;
-            background: linear-gradient(135deg, #e94560, #ffc857);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .close-modal {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-            font-weight: bold;
-            z-index: 2001;
-        }
-
-        .close-modal:hover {
-            color: #e94560;
-        }
-
-        .modal-nav {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-            gap: 20px;
-        }
-
-        .prev-btn, .next-btn {
-            background: #e94560;
-            color: white;
-            border: none;
-            padding: 15px 20px;
-            font-size: 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            flex: 1;
-        }
-
-        .prev-btn:hover, .next-btn:hover {
-            background: #ff6b6b;
-            transform: scale(1.05);
-        }
-    `;
-    document.head.appendChild(style);
-
     // Add to page
     document.body.appendChild(modal);
 
-    // Close modal
-    const closeBtn = modal.querySelector('.close-modal');
-    closeBtn.addEventListener('click', () => {
-        modal.remove();
-    });
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.remove();
-        }
-    });
+    // Close modal + cleanup
+    const closeModal = () => modal.remove();
+    modal.querySelector('.close-modal').addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
     // Navigation
     let currentIndex = index;
@@ -339,13 +259,7 @@ function createModal(index) {
     updateImage();
 }
 
-// Parallax effect on scroll
-window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        hero.style.backgroundPosition = `0% ${window.pageYOffset * 0.5}px`;
-    }
-});
+// Parallax removed for performance
 
 // Counter animation for outcomes
 const countToNumber = (element, target, duration = 2000) => {
@@ -415,15 +329,4 @@ window.addEventListener('load', () => {
     }
 });
 
-// Add active state to CSS
-const style = document.createElement('style');
-style.textContent = `
-    .nav-link.active {
-        color: #e94560 !important;
-    }
 
-    .nav-link.active::after {
-        width: 100% !important;
-    }
-`;
-document.head.appendChild(style);
