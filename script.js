@@ -62,6 +62,21 @@ const updateActiveLink = () => {
 
 window.addEventListener('scroll', updateActiveLink);
 
+// ========================================
+// EmailJS Configuration
+// ========================================
+// 1. Sign up free at https://www.emailjs.com
+// 2. Add an email service (e.g. Gmail) → copy the Service ID
+// 3. Create an email template with variables: {{from_name}}, {{from_email}}, {{phone}}, {{subject}}, {{message}}
+// 4. Replace the values below with your own
+// ========================================
+const EMAILJS_PUBLIC_KEY = 'e-z7Rjm0oPUYR4LdE';   // Account → API Keys → Public Key
+const EMAILJS_SERVICE_ID = 'service_a3qzib5';   // Email Services → Service ID
+const EMAILJS_TEMPLATE_ID = 'template_o24k3ls'; // Email Templates → Template ID
+
+// Initialize EmailJS
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
 // Form Submission
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
@@ -77,30 +92,66 @@ if (contactForm) {
 
         // Simple validation
         if (!name || !email || !phone || !subject || !message) {
-            alert('Please fill in all fields');
+            showFormStatus('Please fill in all fields', 'error');
             return;
         }
 
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address');
+            showFormStatus('Please enter a valid email address', 'error');
             return;
         }
 
         // Phone validation (basic)
         const phoneRegex = /^[0-9+\-\s()]+$/;
         if (!phoneRegex.test(phone)) {
-            alert('Please enter a valid phone number');
+            showFormStatus('Please enter a valid phone number', 'error');
             return;
         }
 
-        // Show success message
-        alert(`Thank you, ${name}! Your message has been sent successfully. We'll contact you soon at ${email}`);
+        // Disable button while sending
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
 
-        // Reset form
-        contactForm.reset();
+        // Send email via EmailJS
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            from_name: name,
+            from_email: email,
+            phone: phone,
+            subject: subject,
+            message: message
+        }).then(() => {
+            showFormStatus(`Thank you, ${name}! Your message has been sent successfully.`, 'success');
+            contactForm.reset();
+        }).catch((error) => {
+            console.error('EmailJS Error:', error);
+            showFormStatus('Failed to send message. Please try again or email directly.', 'error');
+        }).finally(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
     });
+}
+
+// Show form status message (success/error)
+function showFormStatus(message, type) {
+    // Remove existing status message if any
+    const existing = document.querySelector('.form-status');
+    if (existing) existing.remove();
+
+    const statusEl = document.createElement('div');
+    statusEl.className = `form-status form-status-${type}`;
+    statusEl.textContent = message;
+
+    const form = document.querySelector('.contact-form');
+    if (form) {
+        form.appendChild(statusEl);
+        // Auto-remove after 5 seconds
+        setTimeout(() => statusEl.remove(), 5000);
+    }
 }
 
 // CTA Button - Get In Touch

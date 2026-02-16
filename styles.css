@@ -125,6 +125,14 @@ body {
 .nav-logo {
     font-size: 28px;
     font-weight: 900;
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
 }
 
 .logo-text {
@@ -885,7 +893,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    width: 50%;
+    width: 100%;
     height: 100%;
     z-index: 1;
     display: flex;
@@ -907,13 +915,13 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: right center;
     display: block;
-    opacity: 0.6;
+    opacity: 0.7;
     mix-blend-mode: luminosity;
     transition: all 0.8s ease;
-    mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
 }
 
 /* ===== OUTCOMES ===== */
@@ -1102,28 +1110,24 @@ body {
 }
 
 .flagship-visual {
-    perspective: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.visual-element {
-    background: linear-gradient(135deg, var(--accent-gold-dark), var(--accent-gold), var(--accent-gold-light));
+.flagship-speaker-image {
     width: 100%;
-    height: 400px;
+    max-width: 100%;
+    height: auto;
     border-radius: 2px;
     box-shadow: var(--shadow-lg);
-    animation: float 4s ease-in-out infinite;
-    position: relative;
-    overflow: hidden;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s ease;
 }
 
-.visual-element::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, transparent 50%, rgba(255, 255, 255, 0.1) 100%);
+.flagship-speaker-image:hover {
+    transform: translateY(-8px);
 }
 
 @keyframes float {
@@ -1254,12 +1258,11 @@ body {
 .gallery-image {
     width: 100%;
     height: 250px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    object-fit: cover;
+    object-position: center;
     cursor: pointer;
     transition: transform 0.5s ease;
+    display: block;
 }
 
 .gallery-item:hover .gallery-image {
@@ -1335,6 +1338,21 @@ body {
 
 .book-cover {
     position: relative;
+}
+
+.book-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.book-item:hover .book-image {
+    transform: translateY(-8px);
 }
 
 .book-placeholder {
@@ -1781,6 +1799,29 @@ body {
     }
 }
 
+/* ===== FORM STATUS MESSAGE ===== */
+.form-status {
+    margin-top: 16px;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: var(--fs-small);
+    font-weight: 600;
+    text-align: center;
+    animation: fadeInUp 0.3s ease;
+}
+
+.form-status-success {
+    background: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.form-status-error {
+    background: rgba(231, 76, 60, 0.15);
+    color: #e74c3c;
+    border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .hamburger {
@@ -1791,8 +1832,15 @@ body {
         display: none;
     }
 
+    .logo-image {
+        height: 40px;
+    }
+
+    /* --- HERO: full-screen, not cropped --- */
     .hero {
-        padding: 100px 24px 80px;
+        padding: 120px 20px 60px;
+        min-height: 100vh;
+        min-height: 100dvh;
     }
 
     .hero-content {
@@ -1803,50 +1851,73 @@ body {
     .hero-image-container {
         width: 100%;
         height: 100%;
-        right: -20%;
+        right: 0;
         opacity: 1;
     }
 
     .hero-image {
-        opacity: 0.8;
-        object-position: center center;
-        mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
-        -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
+        opacity: 1;
+        object-position: top center;
+        mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 40%, transparent 80%);
+        -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 40%, transparent 80%);
     }
 
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 2.75rem);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        margin-bottom: 24px;
+    }
+
+    .hero-description {
+        font-size: var(--fs-body);
+    }
+
+    .hero-subtext {
+        margin-bottom: 30px;
+    }
+
+    /* --- SECTION PHOTOS: clearly visible --- */
     .who-image-container {
-        width: 60%;
-        opacity: 0.8;
+        width: 55%;
+        opacity: 1;
     }
 
     .who-image {
-        opacity: 0.4;
-        mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
-        -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+        opacity: 1;
+        mix-blend-mode: luminosity;
+        mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 85%);
+        -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 85%);
     }
 
     .services-image-container {
-        width: 60%;
-        opacity: 0.8;
+        width: 55%;
+        opacity: 1;
     }
 
     .services-image {
-        opacity: 0.4;
-        mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
-        -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+        opacity: 1;
+        mix-blend-mode: luminosity;
+        mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 85%);
+        -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 85%);
     }
 
     .outcomes-image-container {
-        width: 60%;
-        opacity: 0.8;
+        width: 70%;
+        opacity: 1;
     }
 
     .outcomes-image {
-        opacity: 0.4;
-        mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
-        -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+        opacity: 1;
+        mix-blend-mode: luminosity;
+        object-position: center center;
+        mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 50%, transparent 90%);
+        -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 50%, transparent 90%);
     }
 
+    /* --- FLOATING SKILLS --- */
     .floating-skill {
         font-size: 0.7rem;
         padding: 6px 14px;
@@ -1882,47 +1953,205 @@ body {
         right: -10%;
     }
 
-    .hero-title {
-        font-size: clamp(2rem, 8vw, 2.75rem);
-    }
-
-    .hero-subtitle {
-        font-size: clamp(1.5rem, 6vw, 2rem);
-    }
-
-    .hero-description {
-        font-size: var(--fs-body);
+    /* --- SECTION HEADERS --- */
+    .section-header {
+        margin-bottom: 30px;
     }
 
     .section-header h2 {
         font-size: clamp(1.5rem, 5vw, 2rem);
+        margin-bottom: 4px;
     }
 
     .section-header h3 {
         font-size: clamp(1.1rem, 4vw, 1.35rem);
     }
 
+    /* --- WHO DESCRIPTION --- */
+    .who-description {
+        margin: 0 auto 30px;
+        font-size: var(--fs-small);
+        line-height: 1.65;
+    }
+
+    .who-description p {
+        margin-bottom: 10px;
+    }
+
+    /* --- AUDIENCE GRID --- */
     .audience-grid {
         grid-template-columns: 1fr 1fr;
+        gap: 10px;
     }
 
-    .about-content,
-    .contact-content,
-    .flagship-content,
+    .audience-card {
+        padding: 18px 14px;
+    }
+
+    .audience-card i {
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+
+    .audience-card h3 {
+        font-size: 0.75rem;
+    }
+
+    /* --- SERVICE CARDS --- */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .service-card {
+        padding: 24px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service-icon {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto 14px;
+        font-size: 20px;
+    }
+
+    .service-card h3 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    .service-card p {
+        font-size: var(--fs-small);
+        line-height: 1.5;
+    }
+
+    /* --- OUTCOME ITEMS --- */
+    .outcomes-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .outcome-item {
+        padding: 22px 20px;
+    }
+
+    .outcome-number {
+        font-size: 36px;
+        right: 16px;
+        top: 14px;
+    }
+
+    .outcome-item h3 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    .outcome-item p {
+        font-size: var(--fs-small);
+        line-height: 1.5;
+    }
+
+    /* --- TESTIMONIALS --- */
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .testimonial-card {
+        padding: 28px 22px;
+    }
+
+    .testimonial-text p {
+        font-size: var(--fs-small);
+        line-height: 1.65;
+        margin-bottom: 18px;
+        padding-left: 18px;
+    }
+
+    /* --- FLAGSHIP --- */
+    .flagship-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .flagship-description {
+        font-size: var(--fs-small);
+        line-height: 1.65;
+    }
+
+    .flagship-speaker-image {
+        max-width: 100%;
+    }
+
+    /* --- ABOUT --- */
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .about-text {
+        font-size: var(--fs-small);
+        line-height: 1.65;
+    }
+
+    .about-text p {
+        margin-bottom: 14px;
+    }
+
+    .highlights-list li {
+        padding: 10px 0;
+        font-size: var(--fs-small);
+    }
+
+    /* --- BOOKS --- */
     .book-item {
         grid-template-columns: 1fr;
+        gap: 24px;
     }
 
+    .book-cover {
+        max-width: 220px;
+        margin: 0 auto;
+    }
+
+    .book-info h3 {
+        font-size: 1.35rem;
+    }
+
+    .book-description {
+        font-size: var(--fs-small);
+        line-height: 1.65;
+    }
+
+    /* --- GALLERY --- */
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .gallery-image {
+        height: 180px;
+        object-fit: cover;
+    }
+
+    /* --- CONTACT --- */
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .contact-info h2 {
+        margin-bottom: 28px;
+    }
+
+    /* --- CTA --- */
     .cta-section h2 {
         font-size: clamp(1.4rem, 4vw, 1.75rem);
     }
 
-    .services-grid,
-    .outcomes-grid,
-    .testimonials-grid {
-        grid-template-columns: 1fr;
-    }
-
+    /* --- SECTION PADDING --- */
     .who-section,
     .services,
     .outcomes,
@@ -1932,14 +2161,21 @@ body {
     .books,
     .testimonials,
     .contact {
-        padding: 80px 20px;
+        padding: 50px 16px;
     }
 }
 
 @media (max-width: 480px) {
+
+    .logo-image {
+        height: 35px;
+    }
+
+    /* --- HERO: full viewport, never cropped --- */
     .hero {
-        padding: 140px 16px 60px;
-        min-height: auto;
+        padding: 110px 16px 50px;
+        min-height: 100vh;
+        min-height: 100dvh;
     }
 
     .hero-title {
@@ -1948,47 +2184,43 @@ body {
 
     .hero-subtitle {
         font-size: clamp(1.25rem, 6vw, 1.5rem);
+        margin-bottom: 18px;
     }
 
     .hero-description {
         font-size: var(--fs-small);
     }
 
-    .section-header h2 {
-        font-size: 1.5rem;
-    }
-
-    .btn-large {
-        padding: 14px 28px;
+    .hero-subtext {
+        margin-bottom: 24px;
         font-size: var(--fs-xs);
     }
 
-    .nav-menu {
-        display: none;
+    .hero-image-container {
+        width: 100%;
+        right: 0;
     }
 
-    .audience-grid {
-        grid-template-columns: 1fr;
+    .hero-image {
+        opacity: 0.9;
+        object-position: top center;
+        mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 35%, transparent 75%);
+        -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 35%, transparent 75%);
     }
 
-    .who-image-container {
-        display: none;
+    /* --- SECTION HEADERS --- */
+    .section-header {
+        margin-bottom: 20px;
     }
 
-    .services-image-container {
-        display: none;
+    .section-header h2 {
+        font-size: 1.35rem;
     }
 
-    .outcomes-image-container {
-        display: none;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .book-cover {
-        max-width: 100%;
+    /* --- BUTTONS --- */
+    .btn-large {
+        padding: 14px 28px;
+        font-size: var(--fs-xs);
     }
 
     .btn {
@@ -1996,6 +2228,207 @@ body {
         text-align: center;
     }
 
+    .nav-menu {
+        display: none;
+    }
+
+    /* --- WHO DESCRIPTION --- */
+    .who-description {
+        margin: 0 auto 20px;
+        font-size: 0.8rem;
+        line-height: 1.55;
+    }
+
+    .who-description p {
+        margin-bottom: 8px;
+    }
+
+    /* --- AUDIENCE GRID --- */
+    .audience-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .audience-card {
+        padding: 14px 10px;
+    }
+
+    .audience-card i {
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
+    .audience-card h3 {
+        font-size: 0.7rem;
+    }
+
+    /* --- SERVICE CARDS --- */
+    .services-grid {
+        gap: 10px;
+    }
+
+    .service-card {
+        padding: 18px 16px;
+    }
+
+    .service-icon {
+        width: 44px;
+        height: 44px;
+        margin: 0 auto 10px;
+        font-size: 18px;
+    }
+
+    .service-card h3 {
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+    }
+
+    .service-card p {
+        font-size: 0.8rem;
+        line-height: 1.45;
+    }
+
+    /* --- OUTCOME ITEMS --- */
+    .outcomes-grid {
+        gap: 10px;
+    }
+
+    .outcome-item {
+        padding: 16px 14px;
+    }
+
+    .outcome-number {
+        font-size: 30px;
+        right: 12px;
+        top: 10px;
+    }
+
+    .outcome-item h3 {
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+    }
+
+    .outcome-item p {
+        font-size: 0.8rem;
+        line-height: 1.45;
+    }
+
+    /* --- TESTIMONIALS --- */
+    .testimonials-grid {
+        gap: 10px;
+    }
+
+    .testimonial-card {
+        padding: 20px 16px;
+    }
+
+    .testimonial-text p {
+        font-size: 0.8rem;
+        line-height: 1.55;
+        margin-bottom: 14px;
+    }
+
+    /* --- SECTION PHOTOS: visible, not hidden --- */
+    .who-image-container {
+        width: 50%;
+        opacity: 1;
+    }
+
+    .who-image {
+        opacity: 0.9;
+        mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 80%);
+        -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 80%);
+    }
+
+    .services-image-container {
+        width: 50%;
+        opacity: 1;
+    }
+
+    .services-image {
+        opacity: 0.9;
+        mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 80%);
+        -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 80%);
+    }
+
+    .outcomes-image-container {
+        width: 65%;
+        opacity: 1;
+    }
+
+    .outcomes-image {
+        opacity: 0.95;
+        object-position: center center;
+        mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 10%, transparent 85%);
+        -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 85%);
+    }
+
+    /* --- GALLERY --- */
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .gallery-image {
+        height: 140px;
+        object-fit: cover;
+    }
+
+    /* --- BOOKS --- */
+    .book-cover {
+        max-width: 180px;
+    }
+
+    .book-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .book-description {
+        font-size: 0.8rem;
+        line-height: 1.55;
+    }
+
+    /* --- FLAGSHIP --- */
+    .flagship-speaker-image {
+        max-width: 100%;
+    }
+
+    .flagship-description {
+        font-size: 0.8rem;
+    }
+
+    /* --- ABOUT --- */
+    .about-text {
+        font-size: 0.8rem;
+    }
+
+    .about-text p {
+        margin-bottom: 10px;
+    }
+
+    .about-highlights h3 {
+        font-size: 1rem;
+        margin-bottom: 16px;
+    }
+
+    .highlights-list li {
+        padding: 8px 0;
+        font-size: 0.8rem;
+        gap: 10px;
+    }
+
+    /* --- CONTACT --- */
+    .contact-form {
+        gap: 14px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 12px 16px;
+        font-size: var(--fs-small);
+    }
+
+    /* --- SECTION PADDING --- */
     .who-section,
     .services,
     .outcomes,
@@ -2005,6 +2438,19 @@ body {
     .books,
     .testimonials,
     .contact {
-        padding: 64px 16px;
+        padding: 40px 14px;
+    }
+
+    .cta-section {
+        padding: 40px 14px;
+    }
+
+    .cta-section h2 {
+        font-size: 1.2rem;
+    }
+
+    .cta-section p {
+        font-size: var(--fs-small);
+        margin-bottom: 24px;
     }
 }
