@@ -171,7 +171,7 @@ ctaButtons.forEach(button => {
         });
     }
 });
-
+// CTA Button - Book Now (if separate from Get In Touch)
 // Scroll Animation - Fade In Elements (optimized with performance settings)
 const observerOptions = {
     threshold: 0.05,
