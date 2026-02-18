@@ -75,9 +75,9 @@ window.addEventListener('scroll', updateActiveLink, { passive: true });
 // 3. Create an email template with variables: {{from_name}}, {{from_email}}, {{phone}}, {{subject}}, {{message}}
 // 4. Replace the values below with your own
 // ========================================
-const EMAILJS_PUBLIC_KEY = 'e-z7Rjm0oPUYR4LdE';   // Account → API Keys → Public Key
-const EMAILJS_SERVICE_ID = 'service_a3qzib5';   // Email Services → Service ID
-const EMAILJS_TEMPLATE_ID = 'template_o24k3ls'; // Email Templates → Template ID
+const EMAILJS_PUBLIC_KEY = 'B4mZilRjEYjzzs8XP';   // Account → API Keys → Public Key
+const EMAILJS_SERVICE_ID = 'service_7a5uu3l';   // Email Services → Service ID
+const EMAILJS_TEMPLATE_ID = 'template_5fqp3xb'; // Email Templates → Template ID
 
 // Initialize EmailJS
 emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -216,7 +216,7 @@ function createModal(index) {
     modal.innerHTML = `
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <div class="modal-image"></div>
+            <img class="modal-image" src="" alt="Gallery Image">
             <div class="modal-nav">
                 <button class="prev-btn">&#10094;</button>
                 <button class="next-btn">&#10095;</button>
@@ -235,15 +235,10 @@ function createModal(index) {
     // Navigation
     let currentIndex = index;
     const updateImage = () => {
-        const colors = [
-            'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-            'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-            'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-            'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-            'linear-gradient(135deg, #30cfd0 0%, #330867 100%)'
-        ];
-        modal.querySelector('.modal-image').style.background = colors[currentIndex % colors.length];
+        const img = galleryItems[currentIndex].querySelector('img');
+        const modalImg = modal.querySelector('.modal-image');
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
     };
 
     modal.querySelector('.prev-btn').addEventListener('click', () => {
