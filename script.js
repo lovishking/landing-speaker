@@ -75,9 +75,9 @@ window.addEventListener('scroll', updateActiveLink, { passive: true });
 // 3. Create an email template with variables: {{from_name}}, {{from_email}}, {{phone}}, {{subject}}, {{message}}
 // 4. Replace the values below with your own
 // ========================================
-const EMAILJS_PUBLIC_KEY = 'B4mZilRjEYjzzs8XP';   // Account → API Keys → Public Key
-const EMAILJS_SERVICE_ID = 'service_7a5uu3l';   // Email Services → Service ID
-const EMAILJS_TEMPLATE_ID = 'template_5fqp3xb'; // Email Templates → Template ID
+const EMAILJS_PUBLIC_KEY = 'yb-j-RtQYT0oQPygI';   // Account → API Keys → Public Key
+const EMAILJS_SERVICE_ID = 'service_n9ryq1n';   // Email Services → Service ID
+const EMAILJS_TEMPLATE_ID = 'template_98qp9ci'; // Email Templates → Template ID
 
 // Initialize EmailJS
 emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -164,10 +164,7 @@ const ctaButtons = document.querySelectorAll('.btn-primary, .btn-secondary');
 ctaButtons.forEach(button => {
     if (button.textContent.includes('Get In Touch') || button.textContent.includes('Book Now') || button.textContent.includes('Book')) {
         button.addEventListener('click', () => {
-            const contactSection = document.querySelector('#contact');
-            if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+            window.open('https://www.linkedin.com/in/samrat-d-43a3133ab/', '_blank');
         });
     }
 });
