@@ -128,7 +128,7 @@ body {
 }
 
 .logo-image {
-    height: 50px;
+    height: 160px;
     width: auto;
     object-fit: contain;
 }
@@ -1747,7 +1747,7 @@ body {
     }
 
     .logo-image {
-        height: 40px;
+        height: 65px;
     }
 
     /* --- HERO: full-screen, not cropped --- */
@@ -2082,7 +2082,7 @@ body {
 @media (max-width: 480px) {
 
     .logo-image {
-        height: 35px;
+        height: 150px;
     }
 
     /* --- HERO: full viewport, never cropped --- */
