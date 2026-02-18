@@ -933,7 +933,7 @@ body {
 .flagship-bg-image {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 10;
     right: 0;
     bottom: 0;
     z-index: 0;
@@ -944,11 +944,17 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center;
-    opacity: 0.6;
+    object-position: 70% center;
+    opacity: 0.85;
     filter: saturate(1.5) contrast(1.2) brightness(1.1);
-    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.3) 80%, transparent 100%);
-    -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.3) 80%, transparent 100%);
+    mask-image:
+        linear-gradient(to left, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.4) 65%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 8%, black 20%, black 80%, rgba(0, 0, 0, 0.8) 92%, transparent 100%);
+    -webkit-mask-image:
+        linear-gradient(to left, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.4) 65%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 8%, black 20%, black 80%, rgba(0, 0, 0, 0.8) 92%, transparent 100%);
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
 }
 
 .flagship::before {
@@ -959,9 +965,9 @@ body {
     right: 0;
     bottom: 0;
     background:
-        radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 50%, rgba(201, 169, 110, 0.05) 0%, transparent 60%),
-        linear-gradient(180deg, rgba(10, 10, 15, 0.35) 0%, rgba(10, 10, 15, 0.5) 50%, rgba(10, 10, 15, 0.35) 100%);
+        radial-gradient(ellipse at 30% 50%, rgba(10, 10, 15, 0.6) 0%, transparent 70%),
+        radial-gradient(ellipse at 80% 50%, rgba(201, 169, 110, 0.06) 0%, transparent 60%),
+        linear-gradient(to right, rgba(10, 10, 15, 0.5) 0%, rgba(10, 10, 15, 0.2) 40%, transparent 70%);
     pointer-events: none;
     z-index: 1;
 }
