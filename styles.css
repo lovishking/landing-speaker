@@ -1180,7 +1180,7 @@ body {
 
 .book-item {
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 500px 1fr;
     gap: 50px;
     align-items: start;
 }
